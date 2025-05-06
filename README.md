@@ -7,17 +7,18 @@ Automate AFK movement, mouse clicks, and chat spam for PC games — or simulate 
 ##  Requirements
 
 ###  PC Version
-- Arduino Leonardo or Micro
-- Micro USB cable
-- Arduino IDE installed
+- [Arduino Leonardo](https://www.amazon.com/KEYESTUDIO-Leonardo-Development-Board-Arduino/dp/B0786LJQ8K/ref=asc_df_B0786LJQ8K?mcid=0fd9a8d21d28396d8aecc7d94f5858cc&hvocijid=13190418784293758253-B0786LJQ8K-&hvexpln=73&tag=hyprod-20&linkCode=df0&hvadid=721245378154&hvpos=&hvnetw=g&hvrand=13190418784293758253&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9007848&hvtargid=pla-2281435178338&psc=1) or [Micro](www.amazon.com/diymore-ATmega32U4-Replace-ATmega328-Leonardo/dp/B01KJR41J4/ref=asc_df_B01KJR41J4?mcid=12a3181b166f3d4896e09cda912526f6&hvocijid=13944012122565128041-B01KJR41J4-&hvexpln=73&tag=hyprod-20&linkCode=df0&hvadid=721245378154&hvpos=&hvnetw=g&hvrand=13944012122565128041&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9007848&hvtargid=pla-2281435175938&psc=1)
+- [Micro USB cable](https://www.amazon.com/FEMORO-Transfer-Charging-Smartphone-Bluetooth/dp/B0D2KZQR8T/ref=sr_1_3?crid=1GRBMKRBQKLAI&dib=eyJ2IjoiMSJ9.2ODqAvSnCFLkB1v4odzbS67ytg_uNKRTTrMoEc2auz8yw0yCljJfozlBgSPEJMKASYTxKklSAl-Lm3mAT4OGwMAma_M8wEq8J6zsM4y-7JYNn0wFlQYyuHkp50DPqqv7XC3ttfDCpRlzbtLDMOaz1QNT_SweTDqJ7I_EZpOgrYoB_1EVmY-g3IPlWfNlBFqSwb4Iov-fqznt5Xj0gN3VXTssxBTJVv5-JXvIB5j1DNya09njqR3nPiulnZoSO5wlTKEFp-YbhRZpb9P8vQQ-OQrAI5EOg4Vnc-514Mnk34o.JyiA-Vag-ZFKqfZfRwLh9TFrSeEZVLzpQM3cgUUG47E&dib_tag=se&keywords=micro+usb+cable+data&qid=1746560106&s=electronics&sprefix=micro+usb+cable+data%2Celectronics%2C184&sr=1-3)
+- [Arduino IDE](https://www.arduino.cc/en/software/) installed
 
 ### 🎮 Console Version (PS4)
-- Arduino Leonardo or Micro
-- USB Host Shield 2.0
+- [Arduino Leonardo](https://www.amazon.com/KEYESTUDIO-Leonardo-Development-Board-Arduino/dp/B0786LJQ8K/ref=asc_df_B0786LJQ8K?mcid=0fd9a8d21d28396d8aecc7d94f5858cc&hvocijid=13190418784293758253-B0786LJQ8K-&hvexpln=73&tag=hyprod-20&linkCode=df0&hvadid=721245378154&hvpos=&hvnetw=g&hvrand=13190418784293758253&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9007848&hvtargid=pla-2281435178338&psc=1) or [Micro](www.amazon.com/diymore-ATmega32U4-Replace-ATmega328-Leonardo/dp/B01KJR41J4/ref=asc_df_B01KJR41J4?mcid=12a3181b166f3d4896e09cda912526f6&hvocijid=13944012122565128041-B01KJR41J4-&hvexpln=73&tag=hyprod-20&linkCode=df0&hvadid=721245378154&hvpos=&hvnetw=g&hvrand=13944012122565128041&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9007848&hvtargid=pla-2281435175938&psc=1)
+- [USB Host Shield 2.0](https://www.amazon.com/HiLetgo-Shield-Arduino-Support-Android/dp/B01MTU9OLM/ref=asc_df_B01MTU9OLM?mcid=844f8521b6813e00842a57c9b9e1f417&hvocijid=3040638385995976275-B01MTU9OLM-&hvexpln=73&tag=hyprod-20&linkCode=df0&hvadid=721245378154&hvpos=&hvnetw=g&hvrand=3040638385995976275&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9007848&hvtargid=pla-2281435177858&psc=1)
 - PS4 Controller (USB wired)
-- USB-A to USB-B cable (for Leonardo)
-- Arduino IDE installed
+- [USB-A to USB-B cable](www.amazon.com/Amazon-Basics-External-Gold-Plated-Connectors/dp/B00NH13DV2/ref=sr_1_3?crid=3RHVARL6FPM9&dib=eyJ2IjoiMSJ9.bCBJMqo5p_qtLjShMZULkMHBEqbL6KjSu_Qh9Abr2OlyfKOw1Si4xoF5FdOEEPZ6IoEuIB0VYK4gvAByiCh95HygO5nBTr8kiTmzEzSiRVq1Vv3YOXWgjVI9mevKUUdUS1GKkK-Wvas12LCmgy_XQJKd37-oiis--hOllu4Ckn5_iFh44wwt-NXkq5onjp_xBrbMAFcWftpgU7gAxJ1Y8mhx0nfn_GYiu4tTAUvuglXaW3JY6WBS8UJ-94dKCa1V4nGcdZ_6tUqjl1g_BY14R6FQdSrjZ3qfKVKt0oc7L6Y.my2C_D09kRMC2rO-7owucWwMPrYrRTuJ0if3l6iXUh0&dib_tag=se&keywords=USB-A+to+USB-B+cable&qid=1746560311&s=electronics&sprefix=usb-a+to+usb-b+cable%2Celectronics%2C95&sr=1-3) (for Leonardo)
+- [Arduino IDE](https://www.arduino.cc/en/software/) installed
 
+>Note: PS4 Controller must be branded controller, not generic.
 ---
 
 ## 🖥️ PC AFK + Chat Spam Bot
