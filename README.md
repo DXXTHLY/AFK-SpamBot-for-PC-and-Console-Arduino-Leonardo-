@@ -369,6 +369,95 @@ Open an [Issue](https://github.com/your-username/your-repo/issues) or ask for:
 
 ---
 
+## 🧯 Safe Upload Methods (Avoid Getting "Spammed" by Your Own Arduino)
+
+When using `Keyboard.h` on Arduino Leonardo, Pro Micro, or other ATmega32u4-based boards, your script starts running the moment it’s plugged in. If the code spams keys or mouse movements, it can be **difficult to upload new code**.
+
+Here are **three reliable methods** to regain control:
+
+---
+
+###  Method 1: The "Double Reset" Trick
+
+Use this if your Arduino is locking you out due to instantly spamming.
+
+**Steps:**
+
+1. Unplug the Arduino
+2. Plug it back in
+3. **Quickly press the RESET button twice**
+4. It will enter **bootloader mode** for ~8 seconds
+5. During that window, **upload your new sketch from the Arduino IDE**
+
+> **Tip:** In bootloader mode, the board may show up as a different COM port temporarily (e.g., `COM4` becomes `COM6`).
+
+---
+
+###  Method 2: Escape Mode via Serial Input
+
+Modify your sketch to delay and give you a chance to halt it.
+
+```cpp
+void setup() {
+  Keyboard.begin();
+  Mouse.begin();
+  delay(3000); // Wait before spamming begins
+
+  // ESCAPE MODE: 5 seconds to send ESC via Serial Monitor
+  for (int i = 0; i < 50; i++) {
+    if (Serial.available()) {
+      char c = Serial.read();
+      if (c == 27) { // ESC key
+        while (true); // Halt sketch
+      }
+    }
+    delay(100);
+  }
+}
+````
+
+**Usage:**
+
+* Open the **Serial Monitor** in Arduino IDE
+* Quickly **send the ESC key (`ASCII 27`)**
+* The sketch will freeze, allowing a safe upload
+
+---
+
+### 🛑 Method 3: "Safe Mode" Using a Jumper or Button
+
+Use a hardware pin to prevent your script from running.
+
+```cpp
+#define SAFE_PIN 2
+
+void setup() {
+  pinMode(SAFE_PIN, INPUT_PULLUP); // Button pulls it LOW
+
+  if (digitalRead(SAFE_PIN) == LOW) {
+    while (true); // Safe mode - stops everything
+  }
+
+  Keyboard.begin();
+  Mouse.begin();
+  delay(3000);
+}
+```
+
+**Usage:**
+
+* Connect a button or jumper wire to `GND` and `D2`
+* Hold the button (or keep pin LOW) when plugging in
+* Your sketch will **not run** — safe for uploads
+
+---
+
+### ✅ Recommendation
+
+> Use **Method 1** (double reset) for emergency recovery, and build in **Method 3** (hardware-safe mode) in all your sketches for easier development!
+
+---
+
 ## ⚠️ Disclaimer
 
 This project is for educational and accessibility purposes. Do not use to violate game TOS or cheat in online matches.
