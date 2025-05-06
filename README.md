@@ -1,6 +1,8 @@
 # 🎮 Arduino AFK & Chat Spam Bot (PC + Console)
 
 Automate AFK movement, mouse clicks, and chat spam for PC games — or simulate PS4 controller input using Arduino Leonardo with a USB Host Shield. Perfect for botting, farming, or just staying alive in multiplayer lobbies.
+![image](https://github.com/user-attachments/assets/25491697-1d33-4bd8-a011-a420ec7d9807)
+
 
 ---
 
