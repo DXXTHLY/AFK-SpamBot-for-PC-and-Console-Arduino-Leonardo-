@@ -338,8 +338,8 @@ void fakeChatSpam() {
 
 ### ✅ To use with Xbox:
 
-* Buy a **Titan Two**, **XIM Apex**, or similar hardware
-* OR use a **Raspberry Pi Pico / RP2040-Zero** flashed with **GP2040-CE**
+* Buy a **[Titan Two](https://www.consoletuner.com/products/titan-two/)**, **[XIM Apex](https://store.xim.tech)**, or similar hardware
+* OR use a **[Raspberry Pi Pico](https://www.amazon.com/Raspberry-RP2040-microcontroller-Dual-core-Processor-1pc/dp/B0BK9CTMSV/ref=asc_df_B0BK9CTMSV?mcid=2372ddea058637cdbba6d88c1ffcf047&hvocijid=17751606268981438704-B0BK9CTMSV-&hvexpln=73&tag=hyprod-20&linkCode=df0&hvadid=721245378154&hvpos=&hvnetw=g&hvrand=17751606268981438704&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9007848&hvtargid=pla-2281435176858&psc=1) / [RP2040-Zero](https://www.waveshare.com/rp2040-zero.htm)** flashed with **[GP2040-CE](https://gp2040-ce.info)**
 
   * Emulates Xbox 360/Series controller
   * Supports macros, input remapping, anti-recoil, turbo, etc.
