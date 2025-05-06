@@ -28,23 +28,107 @@ Automate AFK movement, mouse clicks, and chat spam for PC games — or simulate 
 #include "Keyboard.h"
 #include "Mouse.h"
 
+// Set timing intervals
 unsigned long lastActionTime = 0;
 unsigned long actionInterval = 10000; // Every 10 seconds
+unsigned long mouseMoveInterval = 5000; // Move mouse every 5 seconds
 
-// Array of random messages
+// AFK random actions
+const int randomKeys[] = {'W', 'A', 'S', 'D', 'Q', 'E', 'R', 'F', 'G'};  // Example keys to press
+const int keyCount = sizeof(randomKeys) / sizeof(randomKeys[0]);
+
+// Meme chat messages
 const char* messages[] = {
-  "hello world",
-  "gg ez",
-  "anyone got mic?",
-  "yo chill 😭",
-  "bro thinks he's him",
-  "nice hacks bro",
-  "i lagged 😒",
-  "touch grass 💀",
-  "LMAO",
-  "👽👽👽"
+  "My goldfish is playing for me rn 🐠",
+  "Keyboard on fire 🔥",
+  "Beep boop I'm a bot",
+  "I’m here but spiritually gone",
+  "Haven’t blinked in 2 hours 👁️👁️",
+  "Running on 3 FPS and dreams",
+  "My cat is farming XP",
+  "This is totally not a bot",
+  "Using dial-up WiFi 📡",
+  "I trained a squirrel to play for me 🐿️",
+  "Send snacks pls 🍕",
+  "Keyboard held hostage",
+  "I'm running this on a toaster 🔌",
+  "Currently in stealth mode 😎",
+  "AI takeover starts now 🤖",
+  "Mentally I'm in Minecraft",
+  "Ping: 99999ms 🚨",
+  "Respawning IRL",
+  "My hamster unplugged the router",
+  "Hard carrying my KD into the ground",
+  "My aim is based on vibes only",
+  "Stuck in third person view",
+  "Every move is a jump scare 💀",
+  "Error 404: Skill not found",
+  "I only play with my eyes closed",
+  "Fighting lag more than players",
+  "Cursed loadout equipped",
+  "Powered by coffee and regrets ☕",
+  "This isn’t even my final form",
+  "My dog queued for me 🐶",
+  "Losing pixels by the second",
+  "Mousepad is a pizza box",
+  "Brain.exe has stopped working",
+  "I'm just background noise rn",
+  "I mapped shoot to sneeze",
+  "Using Morse code to play",
+  "This game runs on hopes and dreams ✨",
+  "I blink and I die",
+  "LAG IS MY SUPERPOWER",
+  "Controller is held together by tape",
+  "This is a cry for help but make it funny",
+  "I can quit anytime I want 🫠",
+  "Botting? No this is divine intervention"
 };
 const int messageCount = sizeof(messages) / sizeof(messages[0]);
+
+// Send message with different methods (T/ENTER)
+void sendMessage(const char* msg, bool useT) {
+  if (useT) {
+    Keyboard.press('t');
+    delay(100);
+    Keyboard.release('t');
+  } else {
+    Keyboard.press(KEY_RETURN);
+    delay(100);
+    Keyboard.release(KEY_RETURN);
+  }
+
+  delay(200);
+  Keyboard.print(msg);
+  delay(100);
+  Keyboard.press(KEY_RETURN);
+  delay(100);
+  Keyboard.release(KEY_RETURN);
+}
+
+// Simulate random key press
+void pressRandomKey() {
+  int keyIndex = random(0, keyCount);
+  Keyboard.press(randomKeys[keyIndex]);
+  delay(100); // Hold key for a while
+  Keyboard.release(randomKeys[keyIndex]);
+}
+
+// Simulate random mouse movement
+void moveMouseRandomly() {
+  int moveX = random(-10, 10);  // Small random horizontal movement
+  int moveY = random(-10, 10);  // Small random vertical movement
+  Mouse.move(moveX, moveY);
+}
+
+// Simulate right stick movement (optional for console setup)
+void moveRightStick() {
+  // Example movement emulation for right stick (PC version for now)
+  int moveX = random(-5, 5);   // Random horizontal movement
+  int moveY = random(-5, 5);   // Random vertical movement
+
+  // You would need to adapt this for actual console emulation using USB Host Shield or similar.
+  Mouse.move(moveX, moveY);
+}
 
 void setup() {
   Keyboard.begin();
@@ -56,35 +140,27 @@ void loop() {
   unsigned long now = millis();
 
   if (now - lastActionTime > actionInterval) {
-    // Move mouse slightly
-    int moveX = random(-10, 10);
-    int moveY = random(-10, 10);
-    Mouse.move(moveX, moveY);
+    // AFK Simulation: Perform random key press (WASD, etc.)
+    pressRandomKey();
 
-    // Optional random mouse click
-    if (random(0, 2)) {
-      Mouse.click(MOUSE_LEFT);
+    // AFK Simulation: Move mouse randomly every few seconds
+    if (now - lastActionTime > mouseMoveInterval) {
+      moveMouseRandomly();
+      moveRightStick();  // Simulate right stick movement for console or testing
     }
 
-    // Random chat spam
+    // Optional random chat spam
     if (random(0, 2)) {
-      Keyboard.press('t'); // Open chat (change key if needed)
-      delay(100);
-      Keyboard.release('t');
-      delay(100);
-
-      // Pick a random message and send it
       int index = random(0, messageCount);
-      Keyboard.print(messages[index]);
-
-      Keyboard.press(KEY_RETURN); // Send
-      delay(100);
-      Keyboard.release(KEY_RETURN);
+      sendMessage(messages[index], true);  // Try with 'T'
+      delay(500); // Small delay between attempts
+      sendMessage(messages[index], false); // Try with 'Enter'
     }
 
     lastActionTime = now;
   }
 }
+
 ````
 
 ###  How It Works
@@ -108,38 +184,133 @@ void loop() {
 ###  Arduino + USB Host Shield Code
 
 ```cpp
-#include <PS4USB.h>
-USB Usb;
-PS4USB PS4(&Usb);
+#include <HID-Project.h>
+#include <HID-Settings.h>
+#include <Joystick.h>
+
+Joystick_ Joystick(JOYSTICK_DEFAULT_REPORT_ID,
+  JOYSTICK_TYPE_GAMEPAD, 8, 0, // Buttons, Hat switch
+  true, true, false, // X, Y, Z
+  false, false, false, // Rx, Ry, Rz
+  false, false, // Rudder, Throttle
+  false, false, false); // Accelerator, Brake, Steering
 
 unsigned long lastActionTime = 0;
+unsigned long actionInterval = 10000;
+unsigned long stickMoveInterval = 5000;
+
+const int buttonCount = 8;
+const int buttons[buttonCount] = {
+  1, 2, 3, 4, // A, B, X, Y or Cross/Circle/Square/Triangle
+  5, 6, 7, 8  // L1, R1, L2, R2 (can map as needed)
+};
+
+const char* messages[] = {
+  "My goldfish is playing for me rn 🐠",
+  "Keyboard on fire 🔥",
+  "Beep boop I'm a bot",
+  "I’m here but spiritually gone",
+  "Haven’t blinked in 2 hours 👁️👁️",
+  "Running on 3 FPS and dreams",
+  "My cat is farming XP",
+  "This is totally not a bot",
+  "Using dial-up WiFi 📡",
+  "I trained a squirrel to play for me 🐿️",
+  "Send snacks pls 🍕",
+  "Keyboard held hostage",
+  "I'm running this on a toaster 🔌",
+  "Currently in stealth mode 😎",
+  "AI takeover starts now 🤖",
+  "Mentally I'm in Minecraft",
+  "Ping: 99999ms 🚨",
+  "Respawning IRL",
+  "My hamster unplugged the router",
+  "Hard carrying my KD into the ground",
+  "My aim is based on vibes only",
+  "Stuck in third person view",
+  "Every move is a jump scare 💀",
+  "Error 404: Skill not found",
+  "I only play with my eyes closed",
+  "Fighting lag more than players",
+  "Cursed loadout equipped",
+  "Powered by coffee and regrets ☕",
+  "This isn’t even my final form",
+  "My dog queued for me 🐶",
+  "Losing pixels by the second",
+  "Mousepad is a pizza box",
+  "Brain.exe has stopped working",
+  "I'm just background noise rn",
+  "I mapped shoot to sneeze",
+  "Using Morse code to play",
+  "This game runs on hopes and dreams ✨",
+  "I blink and I die",
+  "LAG IS MY SUPERPOWER",
+  "Controller is held together by tape",
+  "This is a cry for help but make it funny",
+  "I can quit anytime I want 🫠",
+  "Botting? No this is divine intervention"
+};
+
+const int messageCount = sizeof(messages) / sizeof(messages[0]);
 
 void setup() {
-  Usb.begin();
-  delay(2000); // Wait for USB devices to connect
+  Joystick.begin();
+  delay(3000);  // Give console time to detect input device
 }
 
 void loop() {
-  Usb.Task();
+  unsigned long now = millis();
 
-  if (PS4.connected()) {
-    unsigned long now = millis();
+  if (now - lastActionTime > actionInterval) {
+    moveStickRandomly();       // Simulate AFK movement
+    pressRandomButton();       // Tap a random button
 
-    if (now - lastActionTime > random(10000, 15000)) {
-      // Simulate analog stick movement
-      int lx = random(-127, 127);
-      int ly = random(-127, 127);
-      PS4.setAnalogHat(LeftHatX, lx);
-      PS4.setAnalogHat(LeftHatY, ly);
-
-      // Random button press
-      if (random(0, 2)) PS4.setButtonClick(CROSS);
-      if (random(0, 2)) PS4.setButtonClick(R2);
-
-      lastActionTime = now;
+    if (random(0, 2)) {
+      fakeChatSpam();          // Simulate text spam
     }
+
+    lastActionTime = now;
   }
 }
+
+// Simulate thumbstick movement (right stick = camera, left = movement)
+void moveStickRandomly() {
+  int x = random(120, 135);  // Range around center 128 (±)
+  int y = random(120, 135);
+  Joystick.setXAxis(x);
+  Joystick.setYAxis(y);
+  delay(200);
+  Joystick.setXAxis(128);
+  Joystick.setYAxis(128);
+}
+
+// Simulate random button press
+void pressRandomButton() {
+  int b = buttons[random(0, buttonCount)];
+  Joystick.pressButton(b - 1); // Buttons 0-7
+  delay(100);
+  Joystick.releaseButton(b - 1);
+}
+
+// Simulate console chat spam by "typing" one character at a time (some games support virtual keyboard)
+void fakeChatSpam() {
+  int index = random(0, messageCount);
+  const char* msg = messages[index];
+
+  for (int i = 0; msg[i] != '\0'; i++) {
+    Joystick.setXAxis(127 + random(-3, 3));  // Slight motion
+    Joystick.pressButton(1);  // Fake "type"
+    delay(50);
+    Joystick.releaseButton(1);
+    delay(50);
+  }
+
+  // Fake 'Enter' button press
+  Joystick.pressButton(2);  // Change to appropriate button if needed
+  delay(100);
+  Joystick.releaseButton(2);
+}
+
 ```
 
 ###  How It Works
