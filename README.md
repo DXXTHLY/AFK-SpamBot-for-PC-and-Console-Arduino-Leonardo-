@@ -31,6 +31,21 @@ Automate AFK movement, mouse clicks, and chat spam for PC games — or simulate 
 unsigned long lastActionTime = 0;
 unsigned long actionInterval = 10000; // Every 10 seconds
 
+// Array of random messages
+const char* messages[] = {
+  "hello world",
+  "gg ez",
+  "anyone got mic?",
+  "yo chill 😭",
+  "bro thinks he's him",
+  "nice hacks bro",
+  "i lagged 😒",
+  "touch grass 💀",
+  "LMAO",
+  "👽👽👽"
+};
+const int messageCount = sizeof(messages) / sizeof(messages[0]);
+
 void setup() {
   Keyboard.begin();
   Mouse.begin();
@@ -53,11 +68,15 @@ void loop() {
 
     // Random chat spam
     if (random(0, 2)) {
-      Keyboard.press('t'); // Open chat (change if needed)
+      Keyboard.press('t'); // Open chat (change key if needed)
       delay(100);
       Keyboard.release('t');
       delay(100);
-      Keyboard.print("Spam message"); // Customize message
+
+      // Pick a random message and send it
+      int index = random(0, messageCount);
+      Keyboard.print(messages[index]);
+
       Keyboard.press(KEY_RETURN); // Send
       delay(100);
       Keyboard.release(KEY_RETURN);
