@@ -18,7 +18,7 @@ Automate AFK movement, mouse clicks, and chat spam for PC games — or simulate 
 - [USB-A to USB-B cable](www.amazon.com/Amazon-Basics-External-Gold-Plated-Connectors/dp/B00NH13DV2/ref=sr_1_3?crid=3RHVARL6FPM9&dib=eyJ2IjoiMSJ9.bCBJMqo5p_qtLjShMZULkMHBEqbL6KjSu_Qh9Abr2OlyfKOw1Si4xoF5FdOEEPZ6IoEuIB0VYK4gvAByiCh95HygO5nBTr8kiTmzEzSiRVq1Vv3YOXWgjVI9mevKUUdUS1GKkK-Wvas12LCmgy_XQJKd37-oiis--hOllu4Ckn5_iFh44wwt-NXkq5onjp_xBrbMAFcWftpgU7gAxJ1Y8mhx0nfn_GYiu4tTAUvuglXaW3JY6WBS8UJ-94dKCa1V4nGcdZ_6tUqjl1g_BY14R6FQdSrjZ3qfKVKt0oc7L6Y.my2C_D09kRMC2rO-7owucWwMPrYrRTuJ0if3l6iXUh0&dib_tag=se&keywords=USB-A+to+USB-B+cable&qid=1746560311&s=electronics&sprefix=usb-a+to+usb-b+cable%2Celectronics%2C95&sr=1-3) (for Leonardo)
 - [Arduino IDE](https://www.arduino.cc/en/software/) installed
 
->Note: PS4 Controller must be branded controller, not generic.
+>**Note:** PS4 Controller must be branded controller, not generic.
 ---
 
 ## 🖥️ PC AFK + Chat Spam Bot
