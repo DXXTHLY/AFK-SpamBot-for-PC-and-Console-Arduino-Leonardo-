@@ -469,9 +469,6 @@ This project is for educational and accessibility purposes. Do not use to violat
 MIT License
 
 ```
-
----
-
 MIT License
 
 Copyright (c) 2025 DXXTHLY
